@@ -8,7 +8,7 @@ public class Main {
 	static C mb = new C("mb");
 	
 	public Main(){
-		OutUtil.print("I am Main!");
+		OutUtil.print("I am CallbackMain!");
 	}
 	
 	static{	
@@ -16,7 +16,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		OutUtil.print("Main");
+		OutUtil.print("CallbackMain");
 		Child child = new Child();
 		child.show();
 		OutUtil.print(C.A);

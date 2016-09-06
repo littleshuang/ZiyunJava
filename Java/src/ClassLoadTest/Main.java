@@ -16,7 +16,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		OutUtil.print("CallbackMain");
+		OutUtil.print("Main");
 		Child child = new Child();
 		child.show();
 		OutUtil.print(C.A);

@@ -12,10 +12,16 @@ import java.util.TreeSet;
  */
 
 public class FileUtils extends ArrayList<String> {
-    public static String read(String filename) {
+
+    /**
+     * 读取文件中的数据
+     * @param file
+     * @return
+     */
+    public static String read(File file){
         StringBuilder sb = new StringBuilder();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(new File(filename).getAbsoluteFile()));
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             try {
                 String str;
                 while ((str = reader.readLine()) != null) {
@@ -31,9 +37,42 @@ public class FileUtils extends ArrayList<String> {
         return sb.toString();
     }
 
-    public static void write(String filename, String content){
+    public static String read(String filename) {
+        return read(new File(filename).getAbsoluteFile());
+    }
+
+    /**
+     * 读取二进制文件
+     * @param bfile:待读取数据的文件
+     * @return：一个包含文件内容的字节数组
+     */
+    public static byte[] readByte(File bfile)throws IOException{
         try {
-            PrintWriter writer = new PrintWriter(new File(filename).getAbsoluteFile());
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(bfile));
+            try {
+                byte[] bytes = new byte[in.available()];
+                in.read(bytes);
+                return bytes;
+            }finally {
+                in.close();
+            }
+        }catch (IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static byte[] readByte(String bfn) throws IOException{
+        return readByte(new File(bfn).getAbsoluteFile());
+    }
+
+    /**
+     * 将数据写入文件
+     * @param file
+     * @param content
+     */
+    public static void write(File file, String content){
+        try {
+            PrintWriter writer = new PrintWriter(file);
             try {
                 writer.println(content);
             }finally {
@@ -42,6 +81,10 @@ public class FileUtils extends ArrayList<String> {
         }catch (IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public static void write(String filename, String content){
+        write(new File(filename).getAbsoluteFile(), content);
     }
 
     public FileUtils(String filename, String splitter) {

@@ -9,10 +9,9 @@ public class InitTest {
 //		Father.staticShow();
 		OutUtil.print(Child.str);
 //		Father.staticShow();
-	}
-	
-	class test{
-		static final int A = 8;
-		static final int B = A * 8;
+
+		Test1 t1 = new Test1();
+		Test2 t2 = new Test2();
+		Test3 t3 = new Test3();
 	}
 }
